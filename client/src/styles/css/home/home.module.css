@@ -1,1 +1,2 @@
 .home{display:flex; justify-content:center; align-items:center; display: flex; justify-content: center; align-items: center; flex-direction: column; height: 100vh;}
+.chatWrap{width : 500px; border: 1px solid #c2c2c2; height: 80vh; border-radius: 15px;}

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import HeaderComponent from "@components/Common/HeaderComponent";
-import FooterComponent from "@components/Common/FooterComponent";
 import styles from "@css/home/home.module.css";
+import ChatHeaderComponent from "@components/Home/Child/ChatHeaderComponent";
+import ChatBodyComponent from "@components/Home/Child/ChatBodyComponent";
+import ChatBottomComponent from "@components/Home/Child/ChatBottomComponent";
 
 const HomeComponent = ({ alertSet }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -12,42 +13,13 @@ const HomeComponent = ({ alertSet }) => {
   }, []);
   /* eslint-enable */
 
-  const ButtonHandler = (alertType = "check") => {
-    switch (alertType) {
-      case "failed":
-        alertSet({
-          mainTitle: "Default Button",
-          subTitle: "Subtitle area",
-          callback: () => console.log("closed"),
-          alertType,
-        });
-        break;
-      case "question":
-        alertSet({
-          mainTitle: "Default Button",
-          subTitle: "Subtitle area",
-          callback: () => console.log("closed"),
-          alertType,
-        });
-        break;
-      default:
-        alertSet({
-          mainTitle: "Default Button",
-          subTitle: "Subtitle area",
-          callback: () => console.log("closed"),
-        });
-        break;
-    }
-  };
-
   return !isLoading ? (
     <div className={styles.home}>
-      <HeaderComponent />
-      <div>This is home component</div>
-      <button onClick={() => ButtonHandler()}>Default Button</button>
-      <button onClick={() => ButtonHandler("failed")}>Fail Button</button>
-      <button onClick={() => ButtonHandler("question")}>Question Button</button>
-      <FooterComponent />
+      <div className={styles.chatWrap}>
+        <div className="chatHeader"></div>
+        <div className="chatBody"></div>
+        <div className="chatBottom"></div>
+      </div>
     </div>
   ) : (
     <></>
