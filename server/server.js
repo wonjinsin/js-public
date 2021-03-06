@@ -1,7 +1,9 @@
 require("dotenv").config();
 const express = require("express");
-const dummyRouter = require("./routes/dummyRouter");
+const chatRouter = require("./routes/chatRouter");
+const socket = require("./utils/socket");
 const app = express();
+const server = require('http').createServer(app);
 const winston = require("winston");
 const expressWinston = require("express-winston");
 const bodyParser = require("body-parser");
@@ -33,6 +35,13 @@ process.on("uncaughtException", function (err) {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+app.io = require('socket.io')(server, {
+  cors: {
+    origin: '*',
+  }
+});
+app.use(socket(server, app));
 
 const ISLOCAL = process.env.NODE_ENV === "LOCAL_ENV" ? true : false;
 app.use(
@@ -84,14 +93,7 @@ app.use(
   })
 );
 
-app.use("*", async (req, res, next) => {
-  if (req.session) {
-    console.log(req.session);
-  }
-  next();
-});
-
-app.use("/front/api/v1/dummy", dummyRouter);
+app.use("/front/api/v1/chat", chatRouter);
 
 app.use(
   expressWinston.errorLogger({

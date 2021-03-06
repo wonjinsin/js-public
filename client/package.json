@@ -26,6 +26,7 @@
     "react-spinners-kit": "^1.9.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
+    "socket.io-client": "^3.1.2",
     "stunning-awesome-modal": "1.0.4",
     "styled-components": "^5.2.1",
     "styled-reset": "^4.3.4",
