@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import alertReducer from "@reducers/alert";
-import dummyReducer from "@client/reducers/dummy";
+import alert from "@reducers/alert";
+import chat from "@client/reducers/chat";
 
 export default combineReducers({
-  alertReducer,
-  dummyReducer,
+  alert,
+  chat,
 });

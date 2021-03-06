@@ -1,0 +1,9 @@
+.chatHeader, .chatBottom{flex: 3; display: flex; align-items: center; padding: 0 15px;}
+.chatHeader{background-color: #7781ff; border-top-left-radius: 15px; border-top-right-radius: 15px;}
+.chatBody{flex: 21;background-color: #f4f5ff; padding: 20px 15px; overflow: scroll}
+.chatBottom{background-color: #f4f5ff; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px;flex: 4}
+.chatBottom button{background-color: #7781ff; display: flex; justify-content: center; align-items: center; width:44px; height: 44px; border-radius: 50%; margin-left: auto}
+.chatBottom Input{width: 85%; height: 44px; border-radius: 22px;padding: 14px}
+
+.chatHeader .roomNumber{color: #edec8c; font-size: 18px; font-weight: bold}
+.chatHeader .userName{color: #ffffff; font-size: 18px; font-weight: bold;margin-right: 12px}

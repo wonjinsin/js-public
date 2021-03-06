@@ -1,5 +1,5 @@
 import React from "react";
-import HomeContainer from "@containers/HomeContainer";
+import ChatContainer from "@containers/ChatContainer";
 import ErrorContainer from "@containers/ErrorContainer";
 import ErrorBoundary from "@utils/ErrorBoundary";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
@@ -12,7 +12,7 @@ const Router = (isLoggedIn) => {
       <ScrollToTop>
         <ErrorBoundary>
           <Switch>
-            <Route exact path="/" component={HomeContainer}></Route>
+            <Route exact path="/" component={ChatContainer}></Route>
             <Route path="/*" component={ErrorContainer}></Route>
           </Switch>
         </ErrorBoundary>

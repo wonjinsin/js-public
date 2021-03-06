@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export const chkConnectToken = (token = "") => {
+export const getChatContents = () => {
   return axios
-    .post(`/front/api/v2/connect/token`, {token}, {
+    .get(`/front/api/v1/chat`, {
       headers: {
         "Content-Type": "application/json",
       },
