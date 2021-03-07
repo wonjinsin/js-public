@@ -6,21 +6,18 @@ import { RightOutlined } from "@ant-design/icons";
 import styles from "@css/chat/chatInner.module.css";
 
 const ChatBottomComponent = ({ socket }) => {
-  const userArray = ["user1", "user2"];
+  const nameArray = ["user1", "user2"];
   const message = UseInput("");
   const sendMessage = () => {
-    const user = userArray[Math.floor(Math.random() * userArray.length)];
-    const data = { user, room: 1234, message: message.value };
+    if(!message.value) return false;
+    const name = nameArray[Math.floor(Math.random() * nameArray.length)];
+    const data = { name, room: 1234, message: message.value };
     socket.emit("send message", data);
     message.reset("");
   };
   const enterHandler = (e) => {
     e.key === "Enter" && sendMessage();
   };
-  
-  socket.on("send message", (data) => {
-    console.log(data);
-  });
 
   return (
     <div className={styles.chatBottom}>

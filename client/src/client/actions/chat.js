@@ -1,8 +1,8 @@
-import { CHAT_INIT, CHAT_RECEIVE } from "@client/actions/actionTypes";
+import { CHAT_INIT_ROOM, CHAT_RECEIVE } from "@client/actions/actionTypes";
 
-export const chatInit = (roomNumber = "") => {
+export const chatInitRoom = (roomNumber = "") => {
   return {
-    type: CHAT_INIT,
+    type: CHAT_INIT_ROOM,
     roomNumber
   };
 };

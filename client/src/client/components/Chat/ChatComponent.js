@@ -4,7 +4,7 @@ import ChatHeaderComponent from "@client/components/Chat/Child/ChatHeaderCompone
 import ChatBodyComponent from "@client/components/Chat/Child/ChatBodyComponent";
 import ChatBottomComponent from "@client/components/Chat/Child/ChatBottomComponent";
 
-const ChatComponent = ({ chatInit, chatReceive, chatInfo, socket, alertSet }) => {
+const ChatComponent = ({ socket }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   /* eslint-disable */
@@ -17,7 +17,7 @@ const ChatComponent = ({ chatInit, chatReceive, chatInfo, socket, alertSet }) =>
     <div className={styles.chat}>
       <div className={styles.chatWrap}>
         <ChatHeaderComponent />
-        <ChatBodyComponent chatInfo={chatInfo} socket={socket} />
+        <ChatBodyComponent />
         <ChatBottomComponent socket={socket} />
       </div>
     </div>

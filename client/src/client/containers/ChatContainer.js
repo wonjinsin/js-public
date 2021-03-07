@@ -1,30 +1,30 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import ChatComponent from "@client/components/Chat/ChatComponent";
-import { alertSet } from "@actions/alert";
-import { chatInit, chatReceive } from "@actions/chat";
-import { getChatContents } from "@axios/chat";
+import { chatInitRoom, chatReceive } from "@actions/chat";
 import socketio from "socket.io-client";
 
-const ChatContainer = ({ alertSet, chatInit, chatReceive, chatInfo }) => {
+const ChatContainer = () => {
   const [isLoading, setIsLoading] = useState(true);
   const socket = socketio.connect("http://localhost:38000");
+  const dispatch = useDispatch();
 
   /* eslint-disable */
   useEffect(() => {
     const initRoom = () => {
-      chatInit(1234);
+      dispatch(chatInitRoom(1234));
       socket.emit("init", { room: 1234 });
     };
 
-    const initGetContents = async () => {
-      const contents = await getChatContents();
-      chatReceive(contents.data);
+    const setSocketAction = () => {
+      socket.on("send message", (data) => {
+        dispatch(chatReceive(data));
+      });
     };
 
     const init = async () => {
       await initRoom();
-      await initGetContents();
+      setSocketAction();
       setIsLoading(false);
     };
 
@@ -32,37 +32,7 @@ const ChatContainer = ({ alertSet, chatInit, chatReceive, chatInfo }) => {
   }, []);
   /* eslint-enable */
 
-  return !isLoading ? (
-    <ChatComponent
-      chatInit={chatInit}
-      chatReceive={chatReceive}
-      chatInfo={chatInfo}
-      socket={socket}
-      alertSet={alertSet}
-    />
-  ) : (
-    <></>
-  );
+  return !isLoading ? <ChatComponent socket={socket} /> : <></>;
 };
 
-const mapStateToProps = (state) => {
-  return {
-    chatInfo: state.chat,
-  };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    alertSet: (obj) => {
-      return dispatch(alertSet(obj));
-    },
-    chatInit: (obj) => {
-      return dispatch(chatInit(obj));
-    },
-    chatReceive: (obj) => {
-      return dispatch(chatReceive(obj));
-    },
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(ChatContainer);
+export default ChatContainer;

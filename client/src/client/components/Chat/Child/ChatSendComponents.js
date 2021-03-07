@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "@css/chat/chatContents.module.css";
 
-const ChatSendComponents = ({content, date}) => {
+const ChatSendComponents = ({message, date}) => {
   return (
     <div className={`${styles.sendBox} ${styles.commonBox}`}>
       <span>{date}</span>
-      <div>{content}</div>
+      <div>{message}</div>
     </div>
   );
 };

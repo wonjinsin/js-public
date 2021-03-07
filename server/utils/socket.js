@@ -1,10 +1,9 @@
 module.exports = (server, app) => {
   app.io.on("connection", (socket) => {
     socket.on("init", (data) => {
-      socket.join(data.room, () => {
-        console.log("Join a " + data.room);
-        app.io.to(data.room).emit("joinRoom", data);
-      });
+      socket.join(data.room);
+      console.log("Join a " + data.room);
+      socket.to(data.room).emit("joinRoom", data);
     });
 
     socket.on("disconnect", () => {
@@ -15,11 +14,10 @@ module.exports = (server, app) => {
     socket.on("error", (error) => {
       console.error(error);
     });
-  });
 
-  app.io.on("send message", (data) => {
-    console.log(data);
-    app.io.to(data.room).emit("send message", data);
+    socket.on("send message", (data) => {
+      app.io.to(data.room).emit("send message", data);
+    });
   });
 
   
