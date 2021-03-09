@@ -25,7 +25,7 @@ $ cd client &&  yarn install && yarn build
 $ cd server &&  yarn install && yarn start:local
 // for docker
 $ cd server &&  yarn install && yarn start:docker
-// for server
+// for server 
 $ cd client &&  yarn install && yarn start
 ```
 
