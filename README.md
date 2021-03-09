@@ -1,4 +1,4 @@
-# react-nodejs-boilerplate by Wonjinsin
+# react-nodejs-boilerplate by Wonjinsin 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) + Craco(https://github.com/gsoft-inc/craco) + Redux(https://redux.js.org/) + Nginx(https://www.nginx.com/) + Node.js(https://nodejs.org) + Docker(https://www.docker.com/)
 
